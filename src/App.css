@@ -825,3 +825,217 @@ input:checked + .toggle-slider:before {
     font-size: 0.7rem;
   }
 }
+
+/* Video controls styling */
+.video-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 15px 20px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+  opacity: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
+}
+
+.video-controls.show {
+  opacity: 1;
+}
+
+.video-controls-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  color: white;
+  margin: 0 15px;
+  padding: 8px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.control-btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+/* Keyboard navigation focus style */
+.control-btn.control-focus {
+  background-color: rgba(13, 110, 253, 0.7);
+  transform: scale(1.1);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+
+/* Tooltip for control buttons */
+.control-btn.control-focus::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  animation: tooltipFadeIn 0.3s forwards;
+  z-index: 100;
+}
+
+/* Add a small arrow to the tooltip */
+.control-btn.control-focus::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+  opacity: 0;
+  animation: tooltipFadeIn 0.3s forwards;
+  z-index: 100;
+}
+
+@keyframes tooltipFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.control-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.control-btn.play-pause {
+  width: 60px;
+  height: 60px;
+}
+
+.control-btn.play-pause svg {
+  width: 30px;
+  height: 30px;
+}
+
+.control-btn.stop {
+  background-color: rgba(255, 77, 77, 0.3);
+}
+
+.control-btn.stop:hover, 
+.control-btn.stop.control-focus {
+  background-color: rgba(255, 77, 77, 0.6);
+}
+
+.progress-bar-container {
+  width: 100%;
+  padding: 0 5px;
+}
+
+/* Keyboard navigation help message */
+.keyboard-nav-help {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  z-index: 35;
+  white-space: nowrap;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #0d6efd;
+  border-radius: 5px;
+  transition: width 0.1s linear;
+}
+
+/* Media queries for responsive controls */
+@media (max-width: 768px) {
+  .control-btn {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+  }
+
+  .control-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .control-btn.play-pause {
+    width: 50px;
+    height: 50px;
+  }
+
+  .control-btn.play-pause svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .keyboard-nav-help {
+    bottom: 70px;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  .progress-bar {
+    height: 4px;
+  }
+
+  .video-controls {
+    padding: 10px 15px;
+  }
+
+  .video-controls-inner {
+    margin-bottom: 8px;
+  }
+}
