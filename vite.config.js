@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://api-karaoke-dcoderz.vercel.app/',
+        target: 'https://api-dcoderzoke.vercel.app/',
         changeOrigin: true,
       }
     }
