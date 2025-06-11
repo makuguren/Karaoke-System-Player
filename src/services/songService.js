@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// Use different API base URL depending on environment
-const API_BASE_URL = import.meta.env.PROD 
-  ? 'https://api-dcoderzoke.vercel.app/api'  // Production: direct API URL
-  : '/api';                                   // Development: use proxy
+// Use /api for both development and production
+// Development: Vite proxy in vite.config.js
+// Production: Vercel rewrites in vercel.json
+const API_BASE_URL = '/api';
 
 /**
  * Fetch song information by song number
