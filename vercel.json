@@ -18,6 +18,13 @@
         "dest": "/$1"
       },
       {
+        "src": "/api/(.*)",
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      {
         "src": "/(.*)",
         "dest": "/index.html"
       }

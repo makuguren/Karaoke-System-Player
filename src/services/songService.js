@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_BASE_URL = '/api';
+// Use different API base URL depending on environment
+const API_BASE_URL = import.meta.env.PROD 
+  ? 'https://api-dcoderzoke.vercel.app/api'  // Production: direct API URL
+  : '/api';                                   // Development: use proxy
 
 /**
  * Fetch song information by song number
@@ -10,6 +13,7 @@ const API_BASE_URL = '/api';
 export const getSongByNumber = async (songNumber) => {
   try {
     console.log(`Fetching song data for number: ${songNumber}`);
+    console.log(`Using API base URL: ${API_BASE_URL}`);
     
     // Create a timeout promise that rejects after 10 seconds
     const timeoutPromise = new Promise((_, reject) => {
